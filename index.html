@@ -87,6 +87,8 @@
 }
 
 
+
+
 </style>
 
 <body class="bg-[#E1CAD5]">
@@ -98,10 +100,10 @@
     </div>
 
     <div>
-      <p style="font-family: 'Merienda', cursive;"> Mis Cumpleaños:</p>
+      <p style="font-family: 'Merienda', cursive;"> Mi Cumpleaños:</p>
     </div>
 
-    <div class="countdown-container flex justify-center space-x-10 px-5">
+    <div class="countdown-container flex justify-center space-x-5 px-5">
 
       <div id="days" class="countdown-item bg-[#C8BFE7] rounded-md p-1">
         <span class="countdown font-mono text-5xl">
@@ -154,7 +156,39 @@
       <h3>Cantar</h3>
     </div>
     
+  </div>
 
+  <div class="flex px-5 md:px-10 mt-10 text-center space-x-5 text-white ">
+
+    <div class="w-1/2 bg-purple-400 p-1 py-2 rounded-md">
+      <p>Inteligente</p>
+    </div>
+
+    <div class="w-1/2 bg-purple-400 p-1 py-2 rounded-md">
+      <p>Creativa</p>
+    </div>
+  </div>
+
+  <div class="flex px-5 md:px-10 mt-5 text-center space-x-5 text-white">
+
+    <div class="w-1/2 bg-purple-400 p-1 py-2 rounded-md">
+      <p>Honesta</p>
+    </div>
+
+    <div class="w-1/2 bg-purple-400 p-1 py-2 rounded-md">
+      <p>Encantadora</p>
+    </div>
+  </div>
+
+
+  <div class="flex justify-center px-5 md:px-10 text-white ">
+    <div class="container mx-auto mt-12 flex flex-col items-center">
+      <div class="relative flex items-center justify-center h-28 w-28 border border-2 rounded-full overflow-hidden">
+        <div class="absolute inset-0 bg-purple-600" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--percentage)));"></div>
+        <i class="fa-solid fa-graduation-cap text-3xl"></i>
+      </div>
+      <div class="mt-4 text-lg" id="percentage"></div>
+    </div>
   </div>
 
 
@@ -241,6 +275,17 @@ function updateCountdown() {
   }
 }
 
+const startDate = new Date('June 1, 2023');
+    const endDate = new Date('December 31, 2027');
+    const currentDate = new Date();
 
+    const totalDays = endDate - startDate;
+    const elapsedDays = currentDate - startDate;
+    const percentage = (elapsedDays / totalDays) * 100;
+
+    // Actualizar el porcentaje y la animación del círculo
+    document.getElementById('percentage').innerText = `Porcentaje completado: ${percentage.toFixed(2)}%`;
+    document.querySelector('.bg-purple-600').style.clipPath = `polygon(0 calc(100% - ${percentage.toFixed(2)}%), 100% calc(100% - ${percentage.toFixed(2)}%), 100% 100%, 0 100%)`;
+      
 </script>
 
