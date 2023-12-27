@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Pagina</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Merienda&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+.panel {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  flex: 0.5;
+  margin: 10px;
+  position: relative;
+  -webkit-transition: all 700ms ease-in;
+}
+
+.panel h3 {
+  font-size: 24px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0px;
+  opacity: 0;
+  text-align: center;
+}
+
+
+.panel.active {
+  flex: 5;
+}
+
+.panel.active h3 {
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4s;
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 90vw;
+  }
+  .panel{
+    height: 50vh;
+  }
+
+}
+
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+.container img {
+  object-fit: cover;
+  margin: 10px;
+  height: 130px;
+  width: 130px;
+  max-width: 100%;
+}
+
+.container video {
+  object-fit: cover;
+  margin: 10px;
+  height: 210px;
+  width: 130px;
+  max-width: 100%;
+}
+
+
+</style>
+
+<body class="bg-[#E1CAD5]">
+
+  <div class="text-white text-center space-y-5 mt-5">
+
+    <div class="h-10">
+      <p class="text-3xl" style="font-family: 'Lobster Two', sans-serif;">Sherlyn Alejandra Varguez Sosa</p>
+    </div>
+
+    <div>
+      <p style="font-family: 'Merienda', cursive;"> Mis Cumpleaños:</p>
+    </div>
+
+    <div class="countdown-container flex justify-center space-x-10 px-5">
+
+      <div id="days" class="countdown-item bg-[#C8BFE7] rounded-md p-1">
+        <span class="countdown font-mono text-5xl">
+          <span></span>
+        </span>
+        days
+      </div>
+    
+      <div id="hours" class="countdown-item bg-[#C8BFE7] rounded-md p-1">
+        <span class="countdown font-mono text-5xl">
+          <span></span>
+        </span>
+        hours
+      </div>
+    
+      <div id="minutes" class="countdown-item bg-[#C8BFE7] rounded-md p-1">
+        <span class="countdown font-mono text-5xl">
+          <span></span>
+        </span>
+        min
+      </div>
+    
+      <div id="seconds" class="countdown-item bg-[#C8BFE7] rounded-md p-1">
+        <span class="countdown font-mono text-5xl">
+          <span></span>
+        </span>
+        sec
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="flex justify-center mt-12 text-white">
+    <p style="font-family: 'Merienda', cursive;"> Mis Pasatiempos:</p>
+  </div>
+  
+
+  <div class="container flex justify-center px-5 md:px-10">
+    <div class="panel active" style="background-image: url('image-transformed.png')">
+      <h3>Tomar Fotos</h3>
+    </div>
+    <div class="panel" style="background-image: url('libro.jpg')">
+      <h3>Estudiar</h3>
+    </div>
+    <div class="panel" style="background-image: url('baile.avif')">
+      <h3>Bailar</h3>
+    </div>
+    <div class="panel" style="background-image: url('canto.avif')">
+      <h3>Cantar</h3>
+    </div>
+    
+
+  </div>
+
+
+  <div class="flex flex-col items-center text-white h-52 px-5 md:px-10 mt-10">
+
+    <div class="w-10% text-xl text-center" style="font-family: 'Merienda', cursive;">
+      <p>Galeria</p>
+    </div>
+
+    <div class="w-90% flex items-center ">
+      <div class="container">
+        <img class="transform transition-transform hover:scale-105" src="foto1.jpg" alt="">
+        <img class="transform transition-transform hover:scale-105" src="foto2.jpg" alt="">
+        <img class="transform transition-transform hover:scale-105" src="foto3.jpg" alt="">
+        <video autoplay controls> 
+          <source src="video1.mp4" type="video/mp4">
+          Tu navegador no soporta el tag de video.
+        </video>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  
+</body>
+
+</html>
+
+
+
+
+<script>
+  const panels = document.querySelectorAll('.panel')
+
+panels.forEach(panel => {
+    panel.addEventListener('click', () => {
+        removeActiveClasses()
+        panel.classList.add('active')
+    })
+})
+
+function removeActiveClasses() {
+    panels.forEach(panel => {
+        panel.classList.remove('active')
+    })
+}
+
+
+
+const targetDate = new Date('January 20, 2024 00:00:00').getTime();
+
+// Update the countdown every 1 second
+const countdownInterval = setInterval(updateCountdown, 1000);
+
+function updateCountdown() {
+  // Get the current date and time
+  const currentDate = new Date().getTime();
+
+  // Calculate the remaining time in milliseconds
+  const remainingTime = targetDate - currentDate;
+
+  // Calculate days, hours, minutes, and seconds
+  const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+  // Display the countdown values
+  document.getElementById('days').querySelector('span').textContent = days;
+  document.getElementById('hours').querySelector('span').textContent = hours;
+  document.getElementById('minutes').querySelector('span').textContent = minutes;
+  document.getElementById('seconds').querySelector('span').textContent = seconds;
+
+  // Check if the countdown is over
+  if (remainingTime < 0) {
+    clearInterval(countdownInterval);
+    document.getElementById('days').querySelector('span').textContent = '0';
+    document.getElementById('hours').querySelector('span').textContent = '0';
+    document.getElementById('minutes').querySelector('span').textContent = '0';
+    document.getElementById('seconds').querySelector('span').textContent = '0';
+  }
+}
+
+
+</script>
+
